@@ -1,17 +1,19 @@
 # Напишите программу для. проверки истинности утверждения ¬(X ⋁ Y ⋁ Z) = ¬X ⋀ ¬Y ⋀ ¬Z для всех значений предикат.
 
-def GetData(message):
-    print(message)
-    data = {"X":0, "Y":0,"Z":0}
-    for item in data:
-        data[item] = input(f'Введите {item} ')
-    return data
+def GetData():
+    print('(X ⋁ Y ⋁ Z) = ¬X ⋀ ¬Y ⋀ ¬Z')
+    data = {}
+    for x in [True, False]:
+        for y in [True, False]:
+            for z in [True, False]:
+                result =PredicatCheck(x, y,z)
+                print(f'NOT ({x} OR {y} OR {z}) = NOT {x} AND NOT {y} AND NOT {z}  -> {result}')
+ 
 
-def PredicatCheck(data):
-    left = not (data['X'] or data['Y'] or data['Z']) 
-    right = not data['X'] and not data['Y'] and not data['Z']
+def PredicatCheck(x, y, z):
+    left = not (x or y or z) 
+    right = not x and not y and not z
     result = left == right
     return result
 
-data = GetData("Введите данные")
-print(f'\n¬(X ⋁ Y ⋁ Z) = ¬X ⋀ ¬Y ⋀ ¬Z -> {PredicatCheck(data)}')
+GetData()
